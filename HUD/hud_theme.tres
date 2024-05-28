@@ -1,0 +1,7 @@
+[gd_resource type="Theme" load_steps=2 format=3 uid="uid://qheadypco6kb"]
+
+[ext_resource type="FontFile" uid="uid://dwagelqf2bos6" path="res://HUD/Font/font_26.tres" id="1_au5fm"]
+
+[resource]
+default_font = ExtResource("1_au5fm")
+default_font_size = 26

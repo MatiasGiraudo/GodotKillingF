@@ -1,0 +1,63 @@
+[gd_scene load_steps=4 format=3 uid="uid://jqlyq4ay3fxb"]
+
+[ext_resource type="Texture2D" uid="uid://dknu7xy8wdpx4" path="res://HUD/Font/SoR-TitleImage.png" id="1_tmsa6"]
+[ext_resource type="Script" path="res://Title&Menu/Menu.gd" id="1_w31tp"]
+[ext_resource type="Theme" uid="uid://dvshysktp6r44" path="res://Title&Menu/TitleTheme.tres" id="2_gnn6s"]
+
+[node name="TitleScreen" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_w31tp")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -918.5
+offset_top = -551.0
+offset_right = 918.5
+grow_horizontal = 2
+grow_vertical = 0
+texture = ExtResource("1_tmsa6")
+
+[node name="Margins" type="Control" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 22.0
+offset_top = 27.0
+offset_right = -25.0
+offset_bottom = -25.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Margins"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 87.0
+offset_top = 85.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Title" type="Label" parent="Margins/VBoxContainer"]
+layout_mode = 2
+theme = ExtResource("2_gnn6s")
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_shadow_color = Color(2.5028e-06, 0.568323, 0.0148358, 1)
+theme_override_constants/shadow_offset_y = 8
+text = "KILLING FLUOR"
+horizontal_alignment = 1
+
+[node name="Buttons" type="VBoxContainer" parent="Margins/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 6

@@ -1,0 +1,41 @@
+[gd_scene load_steps=8 format=3 uid="uid://biyda1wakhiam"]
+
+[ext_resource type="PackedScene" uid="uid://dyc4jly4545lv" path="res://Weapons/gun.tscn" id="1_ytge8"]
+[ext_resource type="PackedScene" uid="uid://bimhbt3gye2xo" path="res://Weapons/Bullets/HighPowerBullet.tscn" id="2_8hlti"]
+[ext_resource type="Texture2D" uid="uid://djdknv3ms1kfe" path="res://Weapons/Guns/WeaponIcons/Icon-Rifle.png" id="2_yotou"]
+[ext_resource type="Material" uid="uid://dfylylxelc58q" path="res://Weapons/Materials/gun_material.tres" id="3_nb1bn"]
+[ext_resource type="AudioStream" uid="uid://dcq5de6gja8tx" path="res://Weapons/Audio/Gun 02_shoot.wav" id="5_sfjny"]
+[ext_resource type="AudioStream" uid="uid://dp3mcgsnjg2yc" path="res://Weapons/Audio/Gun 02_reload.wav" id="6_i17lj"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_8hqhs"]
+material = ExtResource("3_nb1bn")
+size = Vector3(0.3, 0.05, 0.05)
+
+[node name="Gun" instance=ExtResource("1_ytge8")]
+gun_name = "M141 Rafaga"
+icon = ExtResource("2_yotou")
+bullet = ExtResource("2_8hlti")
+fire_mode = 1
+mag_capacity = 30
+
+[node name="MeshInstance3D" parent="Malla" index="0"]
+transform = Transform3D(0.864953, 0, -4.44089e-16, 0, 0.170035, 0, -3.55271e-15, 0, 0.160207, 0.0950294, 0.0219251, -0.000104306)
+
+[node name="MeshInstance3D2" parent="Malla" index="1"]
+transform = Transform3D(0.102805, -0.125351, -6.6067e-10, 0.364642, 0.0353409, 2.96929e-09, -6.33433e-09, -1.17193e-09, 0.160207, -0.0916609, -0.140929, -0.000104291)
+
+[node name="MeshInstance3D3" parent="Malla" index="2"]
+transform = Transform3D(-0.107164, -0.0917764, -4.44089e-16, 0.505685, -0.019449, 0, 0, -4.44089e-16, 0.160207, 0.200073, -0.191712, 0.000738513)
+
+[node name="Muzzle" parent="Malla" index="3"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0.648751, 0, -1.64892e-08)
+
+[node name="MeshInstance3D4" type="MeshInstance3D" parent="Malla" index="4"]
+transform = Transform3D(1.27541, 0, 0, 0, 1.29575, 0, 0, 0, 1.98044, 0.498866, 0.014176, -0.000104329)
+mesh = SubResource("BoxMesh_8hqhs")
+
+[node name="AudioShoot" parent="." index="3"]
+stream = ExtResource("5_sfjny")
+
+[node name="AudioReload" parent="." index="4"]
+stream = ExtResource("6_i17lj")

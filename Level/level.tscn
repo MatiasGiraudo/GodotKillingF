@@ -1,0 +1,362 @@
+[gd_scene load_steps=29 format=3 uid="uid://yk3kemh62kk5"]
+
+[ext_resource type="Script" path="res://Level/level.gd" id="1_8rjng"]
+[ext_resource type="PackedScene" uid="uid://k7jcmvhi1mkt" path="res://Enemy/enemy.tscn" id="2_ddxq2"]
+[ext_resource type="Texture2D" uid="uid://dga44pu80ebqu" path="res://Level/ground-grid.png" id="3_7y7kj"]
+[ext_resource type="PackedScene" uid="uid://d4mgdve7l5qiw" path="res://Weapons/Guns/Pistol.tscn" id="3_hrssq"]
+[ext_resource type="Script" path="res://Spawning/spawner.gd" id="4_45lua"]
+[ext_resource type="PackedScene" uid="uid://bkujpa6pbhr0f" path="res://Player/PlayerCharacters/Player1.tscn" id="4_bvviw"]
+[ext_resource type="Script" path="res://Drops/dropper.gd" id="4_wb0fc"]
+[ext_resource type="PackedScene" uid="uid://c6uenk4mw2vgk" path="res://Weapons/Guns/Shotgun.tscn" id="5_gpb0o"]
+[ext_resource type="Script" path="res://Spawning/wave.gd" id="5_wyr83"]
+[ext_resource type="Theme" uid="uid://qheadypco6kb" path="res://HUD/hud_theme.tres" id="6_bq2b7"]
+[ext_resource type="Script" path="res://HUD/hud.gd" id="7_egkc0"]
+[ext_resource type="PackedScene" uid="uid://suto527rcbrk" path="res://Weapons/Guns/Uzi.tscn" id="9_bwbmh"]
+[ext_resource type="PackedScene" uid="uid://biyda1wakhiam" path="res://Weapons/Guns/M141.tscn" id="9_tlgn0"]
+[ext_resource type="PackedScene" uid="uid://ba1owrryq4t15" path="res://Weapons/Guns/50cal.tscn" id="10_aa5u2"]
+[ext_resource type="Script" path="res://HUD/WeaponSelector/SelectedWeapons.gd" id="15_hdbt8"]
+[ext_resource type="AudioStream" uid="uid://dpul7y04pnhhv" path="res://Level/Menu theme - Thiago Adamo.ogg" id="15_ou365"]
+
+[sub_resource type="NavigationMesh" id="NavigationMesh_lvviw"]
+vertices = PackedVector3Array(-3.25, 0.5, -3.75, -2.25, 0.5, -3.75, -2.25, 0.5, -9.5, -9.5, 0.5, -2.75, -3.5, 0.5, -2.75, -3.25, 0.5, -3.75, -2.25, 0.5, -9.5, -9.5, 0.5, -9.5, -1.25, 0.5, -2.25, 1.75, 0.5, -2, 2, 0.5, -2.5, -1.25, 0.5, -3.5, -2.25, 0.5, -3.75, -1.25, 0.5, -3.5, 3.5, 0.5, -2.5, 3.5, 0.5, -9.5, -2.25, 0.5, -9.5, -1.25, 0.5, -3.5, 2, 0.5, -2.5, 3.5, 0.5, -2.5, 4, 0.5, -2.25, 4, 0.5, -0.25, 9.5, 0.5, -0.25, 3.5, 0.5, -2.5, 4, 0.5, -2.25, 9.5, 0.5, -0.25, 9.5, 0.5, -9.5, 3.5, 0.5, -9.5, 1.75, 0.5, -2, -1.25, 0.5, -2.25, -1.5, 0.5, -1.5, 2.25, 0.5, 1.75, 1.75, 0.5, -2, -1.5, 0.5, -1.5, -3, 0.5, 1.75, -3.25, 0.5, -1.5, -3.5, 0.5, -2.75, -9.5, 0.5, -2.75, -9.5, 0.5, 2.75, -3.25, 0.5, 2.75, -3, 0.5, 1.75, -3, 0.5, 1.75, -1.5, 0.5, -1.5, -3.25, 0.5, -1.5, 8.75, 0.5, 7, 3.75, 0.5, 7.25, 3.25, 0.5, 9.5, 9.5, 0.5, 9.5, 4, 0.5, -0.25, 3.75, 0.5, 5.5, 8.5, 0.5, 5.5, 9.5, 0.5, -0.25, 8.5, 0.5, 5.5, 8.75, 0.5, 7, 9.5, 0.5, 9.5, 9.5, 0.5, -0.25, 1.75, 0.5, 5.75, 2.5, 0.5, 5.5, 2.25, 0.5, 3.5, -3, 0.5, 3.5, 3.25, 0.5, 9.5, 3.75, 0.5, 7.25, 1.75, 0.5, 7, 3.25, 0.5, 9.5, 1.75, 0.5, 7, -3, 0.5, 3.5, -9.5, 0.5, 2.75, -9.5, 0.5, 9.5, 1.75, 0.5, 7, 1.75, 0.5, 5.75, -3, 0.5, 3.5, -3, 0.5, 3.5, -3.25, 0.5, 2.75, -9.5, 0.5, 2.75)
+polygons = [PackedInt32Array(2, 1, 0), PackedInt32Array(4, 3, 5), PackedInt32Array(5, 3, 7), PackedInt32Array(5, 7, 6), PackedInt32Array(9, 8, 10), PackedInt32Array(10, 8, 11), PackedInt32Array(13, 12, 14), PackedInt32Array(14, 12, 16), PackedInt32Array(14, 16, 15), PackedInt32Array(19, 18, 17), PackedInt32Array(22, 21, 20), PackedInt32Array(24, 23, 25), PackedInt32Array(25, 23, 27), PackedInt32Array(25, 27, 26), PackedInt32Array(30, 29, 28), PackedInt32Array(32, 31, 33), PackedInt32Array(33, 31, 34), PackedInt32Array(40, 39, 35), PackedInt32Array(35, 39, 36), PackedInt32Array(36, 39, 37), PackedInt32Array(37, 39, 38), PackedInt32Array(43, 42, 41), PackedInt32Array(45, 44, 46), PackedInt32Array(46, 44, 47), PackedInt32Array(49, 48, 50), PackedInt32Array(50, 48, 51), PackedInt32Array(53, 52, 54), PackedInt32Array(54, 52, 55), PackedInt32Array(57, 56, 58), PackedInt32Array(58, 56, 59), PackedInt32Array(60, 62, 61), PackedInt32Array(64, 63, 65), PackedInt32Array(65, 63, 66), PackedInt32Array(66, 63, 67), PackedInt32Array(70, 69, 68), PackedInt32Array(73, 72, 71)]
+agent_height = 2.0
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_phqym"]
+size = Vector3(40, 1, 40)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_udmht"]
+albedo_texture = ExtResource("3_7y7kj")
+uv1_offset = Vector3(1, 0.5, 1)
+uv1_triplanar = true
+
+[sub_resource type="BoxMesh" id="BoxMesh_npico"]
+material = SubResource("StandardMaterial3D_udmht")
+size = Vector3(20, 1, 20)
+
+[sub_resource type="BoxMesh" id="BoxMesh_546bo"]
+size = Vector3(1, 2.5, 0.5)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_igldi"]
+size = Vector3(5.70842, 1.49481, 0.517548)
+
+[sub_resource type="BoxMesh" id="BoxMesh_7pxrv"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_bg6w6"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_7n65j"]
+size = Vector3(0.4, 2.5, 1)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_t0ttf"]
+size = Vector3(0.436035, 1.75891, 20.0912)
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_44icv"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_vptcw"]
+
+[node name="Level" type="Node3D"]
+script = ExtResource("1_8rjng")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(0.501925, 0.863611, -0.0474028, -0.283003, 0.215775, 0.934532, 0.817301, -0.45565, 0.352707, 11.5371, 5.26148, -9.80554)
+shadow_enabled = true
+shadow_opacity = 0.47
+
+[node name="Camara" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.707107, 0.707107, 0, -0.707107, 0.707107, 0, 9, 12)
+
+[node name="Player1" parent="." instance=ExtResource("4_bvviw")]
+transform = Transform3D(0.999587, 0, 0.0287415, 0, 1, 0, -0.0287415, 0, 0.999587, -4.84282, 0, 6.90738)
+
+[node name="NavigationRegion3D" type="NavigationRegion3D" parent="."]
+navigation_mesh = SubResource("NavigationMesh_lvviw")
+
+[node name="Ground" type="StaticBody3D" parent="NavigationRegion3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, 0)
+collision_layer = 9
+collision_mask = 0
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="NavigationRegion3D/Ground"]
+shape = SubResource("BoxShape3D_phqym")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="NavigationRegion3D/Ground"]
+mesh = SubResource("BoxMesh_npico")
+
+[node name="Wall" type="StaticBody3D" parent="NavigationRegion3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.159577, 0.512783, 2.62711)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="NavigationRegion3D/Wall"]
+transform = Transform3D(5.71311, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
+mesh = SubResource("BoxMesh_546bo")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="NavigationRegion3D/Wall"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.000436783, 0.247406, -0.00105286)
+shape = SubResource("BoxShape3D_igldi")
+
+[node name="Wall4" type="StaticBody3D" parent="NavigationRegion3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.13417, 0.512783, -0.777206)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="NavigationRegion3D/Wall4"]
+transform = Transform3D(5.71311, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
+mesh = SubResource("BoxMesh_546bo")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="NavigationRegion3D/Wall4"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.000436783, 0.247406, -0.00105286)
+shape = SubResource("BoxShape3D_igldi")
+
+[node name="Wall2" type="StaticBody3D" parent="NavigationRegion3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.18337, 0.512783, 6.44085)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="NavigationRegion3D/Wall2"]
+transform = Transform3D(5.71311, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
+mesh = SubResource("BoxMesh_546bo")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="NavigationRegion3D/Wall2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.000436783, 0.247406, -0.00105286)
+shape = SubResource("BoxShape3D_igldi")
+
+[node name="Wall3" type="StaticBody3D" parent="NavigationRegion3D"]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 3.13412, 0.512783, 2.13378)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="NavigationRegion3D/Wall3"]
+transform = Transform3D(5.71311, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
+mesh = SubResource("BoxMesh_546bo")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="NavigationRegion3D/Wall3"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.000436783, 0.247406, -0.00105286)
+shape = SubResource("BoxShape3D_igldi")
+
+[node name="Wall5" type="StaticBody3D" parent="NavigationRegion3D"]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -4.66861, 0.512783, -4.66482)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="NavigationRegion3D/Wall5"]
+transform = Transform3D(5.71311, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
+mesh = SubResource("BoxMesh_546bo")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="NavigationRegion3D/Wall5"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.000436783, 0.247406, -0.00105286)
+shape = SubResource("BoxShape3D_igldi")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="NavigationRegion3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.76151, 0.521506, -1.48859)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="NavigationRegion3D/StaticBody3D"]
+mesh = SubResource("BoxMesh_7pxrv")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="NavigationRegion3D/StaticBody3D"]
+shape = SubResource("BoxShape3D_bg6w6")
+
+[node name="StaticBody3D2" type="StaticBody3D" parent="NavigationRegion3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.29907, 0.521506, -2.5944)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="NavigationRegion3D/StaticBody3D2"]
+mesh = SubResource("BoxMesh_7pxrv")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="NavigationRegion3D/StaticBody3D2"]
+shape = SubResource("BoxShape3D_bg6w6")
+
+[node name="StaticBody3D3" type="StaticBody3D" parent="NavigationRegion3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.346986, 0.521506, -7.12066)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="NavigationRegion3D/StaticBody3D3"]
+mesh = SubResource("BoxMesh_7pxrv")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="NavigationRegion3D/StaticBody3D3"]
+shape = SubResource("BoxShape3D_bg6w6")
+
+[node name="StaticBody3D4" type="StaticBody3D" parent="NavigationRegion3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.17212, 0.521506, -7.12066)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="NavigationRegion3D/StaticBody3D4"]
+mesh = SubResource("BoxMesh_7pxrv")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="NavigationRegion3D/StaticBody3D4"]
+shape = SubResource("BoxShape3D_bg6w6")
+
+[node name="WallPerimeter" type="StaticBody3D" parent="NavigationRegion3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9.5116, 0.517582, 3.23113)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="NavigationRegion3D/WallPerimeter"]
+transform = Transform3D(1.00176, 0, 0, 0, 1.00176, 0, 0, 0, 20.1636, -0.25103, 0, -3.20577)
+mesh = SubResource("BoxMesh_7n65j")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="NavigationRegion3D/WallPerimeter"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.252197, 0.379456, -3.16193)
+shape = SubResource("BoxShape3D_t0ttf")
+
+[node name="WallPerimeter2" type="StaticBody3D" parent="NavigationRegion3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10.0376, 0.517582, 3.23113)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="NavigationRegion3D/WallPerimeter2"]
+transform = Transform3D(1.00176, 0, 0, 0, 1.00176, 0, 0, 0, 20.1636, -0.25103, 0, -3.20577)
+mesh = SubResource("BoxMesh_7n65j")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="NavigationRegion3D/WallPerimeter2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.252197, 0.379456, -3.16193)
+shape = SubResource("BoxShape3D_t0ttf")
+
+[node name="WallPerimeter3" type="StaticBody3D" parent="NavigationRegion3D"]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -3.29155, 0.517582, 10.0689)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="NavigationRegion3D/WallPerimeter3"]
+transform = Transform3D(1.00176, 0, 0, 0, 1.00176, 0, 0, 0, 20.1636, -0.25103, 0, -3.20577)
+mesh = SubResource("BoxMesh_7n65j")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="NavigationRegion3D/WallPerimeter3"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.252197, 0.379456, -3.16193)
+shape = SubResource("BoxShape3D_t0ttf")
+
+[node name="WallPerimeter4" type="StaticBody3D" parent="NavigationRegion3D"]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -3.29155, 0.517582, -9.5578)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="NavigationRegion3D/WallPerimeter4"]
+transform = Transform3D(1.00176, 0, 0, 0, 1.00176, 0, 0, 0, 20.1636, -0.25103, 0, -3.20577)
+mesh = SubResource("BoxMesh_7n65j")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="NavigationRegion3D/WallPerimeter4"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.252197, 0.379456, -3.16193)
+shape = SubResource("BoxShape3D_t0ttf")
+
+[node name="Dropper" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.19267, 0.5, -6.30019)
+script = ExtResource("4_wb0fc")
+
+[node name="PickupArea" type="Area3D" parent="Dropper"]
+collision_layer = 16
+collision_mask = 2
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Dropper/PickupArea"]
+shape = SubResource("CylinderShape3D_44icv")
+
+[node name="Spawner" type="Node3D" parent="."]
+script = ExtResource("4_45lua")
+enemy = ExtResource("2_ddxq2")
+
+[node name="Timer" type="Timer" parent="Spawner"]
+
+[node name="Waves" type="Node" parent="Spawner"]
+
+[node name="Wave" type="Node" parent="Spawner/Waves"]
+script = ExtResource("5_wyr83")
+num_enemies = 2
+DropItem = ExtResource("9_bwbmh")
+drop_chance = 0.0
+drop_when = 1.0
+
+[node name="Wave2" type="Node" parent="Spawner/Waves"]
+script = ExtResource("5_wyr83")
+num_enemies = 4
+DropItem = ExtResource("9_bwbmh")
+drop_when = 1.0
+
+[node name="Wave3" type="Node" parent="Spawner/Waves"]
+script = ExtResource("5_wyr83")
+num_enemies = 8
+seconds_between_spawns = 1.5
+DropItem = ExtResource("5_gpb0o")
+
+[node name="Wave4" type="Node" parent="Spawner/Waves"]
+script = ExtResource("5_wyr83")
+num_enemies = 16
+seconds_between_spawns = 1.0
+DropItem = ExtResource("9_tlgn0")
+
+[node name="Wave5" type="Node" parent="Spawner/Waves"]
+script = ExtResource("5_wyr83")
+num_enemies = 30
+seconds_between_spawns = 0.5
+DropItem = ExtResource("10_aa5u2")
+drop_when = 0.2
+
+[node name="HUD" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 27.0
+offset_top = 31.0
+offset_right = -23.0
+offset_bottom = -28.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("6_bq2b7")
+script = ExtResource("7_egkc0")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="HUD"]
+layout_mode = 1
+anchors_preset = 9
+anchor_bottom = 1.0
+offset_right = 154.0
+grow_vertical = 2
+theme_override_constants/separation = 70
+
+[node name="GridContainer" type="GridContainer" parent="HUD/VBoxContainer"]
+layout_mode = 2
+columns = 2
+
+[node name="LevelLabel" type="Label" parent="HUD/VBoxContainer/GridContainer"]
+layout_mode = 2
+text = "LEVEL: 
+"
+
+[node name="LevelValue" type="Label" parent="HUD/VBoxContainer/GridContainer"]
+layout_mode = 2
+text = "0
+"
+
+[node name="WaveLabel" type="Label" parent="HUD/VBoxContainer/GridContainer"]
+layout_mode = 2
+text = "WAVE: 
+"
+
+[node name="WaveValue" type="Label" parent="HUD/VBoxContainer/GridContainer"]
+layout_mode = 2
+text = "0
+"
+
+[node name="SelectedWeapons" type="ItemList" parent="HUD/VBoxContainer"]
+custom_minimum_size = Vector2(250, 0)
+layout_mode = 2
+size_flags_vertical = 3
+focus_mode = 0
+mouse_default_cursor_shape = 2
+theme_override_styles/panel = SubResource("StyleBoxEmpty_vptcw")
+fixed_icon_size = Vector2i(64, 64)
+script = ExtResource("15_hdbt8")
+weapon_inventory = Array[PackedScene]([ExtResource("3_hrssq")])
+
+[node name="GridContainer2" type="GridContainer" parent="HUD/VBoxContainer"]
+layout_mode = 2
+columns = 2
+
+[node name="HealthLabel" type="Label" parent="HUD/VBoxContainer/GridContainer2"]
+layout_mode = 2
+text = "VIDA: 
+"
+
+[node name="HealthValue" type="Label" parent="HUD/VBoxContainer/GridContainer2"]
+layout_mode = 2
+text = "0
+"
+
+[node name="AmmoLabel" type="Label" parent="HUD/VBoxContainer/GridContainer2"]
+layout_mode = 2
+text = "MUNICION: 
+"
+
+[node name="AmmoValue" type="Label" parent="HUD/VBoxContainer/GridContainer2"]
+layout_mode = 2
+text = "0
+"
+
+[node name="AudioBackground" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("15_ou365")
+volume_db = -12.364
+autoplay = true
+
+[connection signal="item_picked_up" from="Dropper" to="HUD/VBoxContainer/SelectedWeapons" method="_on_dropper_item_picked_up"]
+[connection signal="body_entered" from="Dropper/PickupArea" to="Dropper" method="_on_pickup_area_body_entered"]
+[connection signal="drop_item" from="Spawner" to="Dropper" method="_on_spawner_drop_item"]
+[connection signal="wave_update" from="Spawner" to="HUD" method="_on_spawner_wave_update"]
+[connection signal="timeout" from="Spawner/Timer" to="Spawner" method="_on_timer_timeout"]
+[connection signal="item_selected" from="HUD/VBoxContainer/SelectedWeapons" to="HUD/VBoxContainer/SelectedWeapons" method="_on_item_selected"]

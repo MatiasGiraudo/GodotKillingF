@@ -1,0 +1,47 @@
+[gd_scene load_steps=9 format=3 uid="uid://cunnnqhpfv8he"]
+
+[ext_resource type="Script" path="res://Player/player.gd" id="1_quif7"]
+[ext_resource type="PackedScene" uid="uid://dcm5fnl0wh8bb" path="res://stats.tscn" id="2_8b22f"]
+[ext_resource type="PackedScene" uid="uid://cm1s07romawt1" path="res://Weapons/gun_controller.tscn" id="3_2daro"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ss6nf"]
+albedo_color = Color(1, 0.566544, 0.601312, 1)
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_kn402"]
+material = SubResource("StandardMaterial3D_ss6nf")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_bqpcq"]
+albedo_color = Color(0.241156, 0.241156, 0.241156, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_s8l11"]
+material = SubResource("StandardMaterial3D_bqpcq")
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_52ixe"]
+
+[node name="Player" type="CharacterBody3D"]
+collision_layer = 2
+collision_mask = 5
+script = ExtResource("1_quif7")
+
+[node name="Stats" parent="." instance=ExtResource("2_8b22f")]
+max_HP = 10
+
+[node name="Pivot" type="Node3D" parent="."]
+
+[node name="Character" type="MeshInstance3D" parent="Pivot"]
+mesh = SubResource("CapsuleMesh_kn402")
+
+[node name="Gafas" type="MeshInstance3D" parent="Pivot"]
+transform = Transform3D(-2.62762e-08, 0, 0.496296, 0, 0.268323, 0, -0.60113, 0, -2.16938e-08, -0.0129121, 0.425556, -0.268881)
+mesh = SubResource("BoxMesh_s8l11")
+skeleton = NodePath("../..")
+
+[node name="Hand" type="Marker3D" parent="Pivot"]
+transform = Transform3D(1, 0, 1.74846e-07, 0, 1, 0, -1.74846e-07, 0, 1, 0.456016, 0.142361, -0.48264)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("CapsuleShape3D_52ixe")
+
+[node name="GunController" parent="." instance=ExtResource("3_2daro")]
+
+[connection signal="dead_signal" from="Stats" to="." method="_on_stats_dead_signal"]

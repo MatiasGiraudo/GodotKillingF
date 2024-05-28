@@ -1,0 +1,161 @@
+[gd_scene load_steps=11 format=3 uid="uid://dyc4jly4545lv"]
+
+[ext_resource type="Script" path="res://Weapons/gun.gd" id="1_7pc77"]
+[ext_resource type="PackedScene" uid="uid://dksmiv5b6b6sy" path="res://Weapons/bullet.tscn" id="2_b56ix"]
+[ext_resource type="PackedScene" uid="uid://bbittxxf4lj7u" path="res://Weapons/BulletSpawns/bullet_spawn_center.tscn" id="3_3lobq"]
+[ext_resource type="Material" uid="uid://dfylylxelc58q" path="res://Weapons/Materials/gun_material.tres" id="4_d0j8f"]
+
+[sub_resource type="Animation" id="Animation_ow048"]
+resource_name = "Drop"
+length = 2.0
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(0, 6.28319, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_56bl8"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_gtdmo"]
+resource_name = "Recoil"
+length = 0.09
+step = 0.01
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.01, 0.09),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(0.0872665, 0, 0), Vector3(0, 0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.01, 0.09),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(0, 0, 0.1), Vector3(0, 0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_o65jh"]
+resource_name = "Reload"
+length = 0.8
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.6, 0.8),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(0.436332, 0, 0), Vector3(0.436332, 0, 0), Vector3(0, 0, 0)]
+}
+tracks/1/type = "method"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.8),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"refill_mag"
+}]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_p5anp"]
+_data = {
+"Drop": SubResource("Animation_ow048"),
+"RESET": SubResource("Animation_56bl8"),
+"Recoil": SubResource("Animation_gtdmo"),
+"Reload": SubResource("Animation_o65jh")
+}
+
+[sub_resource type="BoxMesh" id="BoxMesh_e5ht1"]
+material = ExtResource("4_d0j8f")
+
+[node name="Gun" type="Node3D"]
+script = ExtResource("1_7pc77")
+bullet = ExtResource("2_b56ix")
+fire_mode = 0
+BulletSpawns = Array[PackedScene]([ExtResource("3_3lobq")])
+
+[node name="Timer" type="Timer" parent="."]
+one_shot = true
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_p5anp")
+}
+
+[node name="Malla" type="Node3D" parent="."]
+transform = Transform3D(-2.98023e-08, 6.57721e-23, -1, -3.55271e-15, 1, -3.55271e-15, 1, -7.60723e-23, -2.98023e-08, -0.0217755, 0.162008, 0.312972)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Malla"]
+transform = Transform3D(0.483018, 0, 0, 0, 0.131226, 0, 0, 0, 0.0808951, 0, 0, 0)
+mesh = SubResource("BoxMesh_e5ht1")
+skeleton = NodePath("../..")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="Malla"]
+transform = Transform3D(0.191125, -0.0992883, 0, 0.221163, 0.0858032, 0, 0, 0, 0.0808951, -0.243177, -0.0946923, 0)
+mesh = SubResource("BoxMesh_e5ht1")
+skeleton = NodePath("../..")
+
+[node name="MeshInstance3D3" type="MeshInstance3D" parent="Malla"]
+transform = Transform3D(-0.0432231, -0.097275, 0, 0.203961, -0.0206143, 0, 0, 0, 0.0808951, 0.103798, -0.106332, 0.000425577)
+mesh = SubResource("BoxMesh_e5ht1")
+skeleton = NodePath("../..")
+
+[node name="Muzzle" type="Node3D" parent="Malla"]
+transform = Transform3D(0.999998, 0, 3.55271e-15, 0, 0.999999, -5.29395e-22, -3.55271e-15, 2.26713e-30, 0.999998, 0.282554, 0, -9.31323e-09)
+
+[node name="AudioShoot" type="AudioStreamPlayer2D" parent="."]
+
+[node name="AudioReload" type="AudioStreamPlayer2D" parent="."]
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

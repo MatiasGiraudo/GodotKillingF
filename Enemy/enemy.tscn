@@ -1,0 +1,54 @@
+[gd_scene load_steps=9 format=3 uid="uid://k7jcmvhi1mkt"]
+
+[ext_resource type="Script" path="res://Enemy/enemy.gd" id="1_3wadd"]
+[ext_resource type="PackedScene" uid="uid://dcm5fnl0wh8bb" path="res://stats.tscn" id="2_hxsom"]
+[ext_resource type="Material" uid="uid://c5k7nxex2tyxq" path="res://Enemy/enemyRestingMaterial.tres" id="2_k3vnr"]
+[ext_resource type="AudioStream" uid="uid://ct5pjjf1myrxc" path="res://Enemy/Audio/Enemy attack.wav" id="4_2mqev"]
+[ext_resource type="AudioStream" uid="uid://3ycfdsbgnl1p" path="res://Enemy/Audio/Enemy death_02.wav" id="5_5ihrx"]
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_elx2g"]
+material = ExtResource("2_k3vnr")
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_530xm"]
+radius = 0.401155
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_5unfu"]
+height = 1.0
+radius = 1.5
+
+[node name="Enemy" type="CharacterBody3D"]
+collision_layer = 4
+collision_mask = 7
+script = ExtResource("1_3wadd")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+mesh = SubResource("CapsuleMesh_elx2g")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("CapsuleShape3D_530xm")
+
+[node name="NavigationAgent3D" type="NavigationAgent3D" parent="."]
+
+[node name="Stats" parent="." instance=ExtResource("2_hxsom")]
+max_HP = 8
+
+[node name="AttackRadio" type="Area3D" parent="."]
+collision_layer = 4
+collision_mask = 2
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="AttackRadio"]
+shape = SubResource("CylinderShape3D_5unfu")
+
+[node name="AttackTimer" type="Timer" parent="."]
+wait_time = 2.0
+one_shot = true
+
+[node name="AudioAttack" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_2mqev")
+
+[node name="AudioDeath" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("5_5ihrx")
+volume_db = 1.0
+
+[connection signal="dead_signal" from="Stats" to="." method="_on_stats_dead_signal"]
+[connection signal="timeout" from="AttackTimer" to="." method="_on_attack_timer_timeout"]

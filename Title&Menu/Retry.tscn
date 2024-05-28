@@ -1,0 +1,46 @@
+[gd_scene load_steps=3 format=3 uid="uid://dya6mopqt5gu1"]
+
+[ext_resource type="PackedScene" uid="uid://drrrnd3npkbh" path="res://Title&Menu/MenuButton.tscn" id="1_dmanp"]
+[ext_resource type="PackedScene" uid="uid://yk3kemh62kk5" path="res://Level/level.tscn" id="2_3yvgk"]
+
+[node name="Retry" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 42.0
+offset_top = 30.0
+offset_right = -26.0
+offset_bottom = -36.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Buttons" type="VBoxContainer" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 6
+theme_override_constants/separation = 10
+alignment = 1
+
+[node name="StartButton" parent="VBoxContainer/Buttons" instance=ExtResource("1_dmanp")]
+layout_mode = 2
+scene_to_load = ExtResource("2_3yvgk")
+
+[node name="Label" parent="VBoxContainer/Buttons/StartButton" index="0"]
+text = "REINTENTAR"
+
+[node name="ExitButton" parent="VBoxContainer/Buttons" instance=ExtResource("1_dmanp")]
+layout_mode = 2
+
+[node name="Label" parent="VBoxContainer/Buttons/ExitButton" index="0"]
+text = "EXIT"
+
+[editable path="VBoxContainer/Buttons/StartButton"]
+[editable path="VBoxContainer/Buttons/ExitButton"]

@@ -1,0 +1,4 @@
+[gd_scene format=3 uid="uid://qn5at7kc71sm"]
+
+[node name="BulletSpawnRight" type="Marker3D"]
+transform = Transform3D(0.996195, 0, -0.0871557, 0, 1, 0, 0.0871557, 0, 0.996195, -0.03, 0, 0)

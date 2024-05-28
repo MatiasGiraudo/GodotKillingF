@@ -1,0 +1,32 @@
+[gd_scene load_steps=6 format=3 uid="uid://dksmiv5b6b6sy"]
+
+[ext_resource type="Script" path="res://Weapons/bullet.gd" id="1_w1wh1"]
+[ext_resource type="AudioStream" uid="uid://cng6nbe1k57lm" path="res://Weapons/Impacts/Impact_03.wav" id="2_f3e0b"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_7de5n"]
+albedo_color = Color(0, 0, 0, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_77dpu"]
+material = SubResource("StandardMaterial3D_7de5n")
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_vcxlv"]
+size = Vector3(0.101563, 0.100784, 0.100769)
+
+[node name="Bullet" type="Node3D"]
+script = ExtResource("1_w1wh1")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.1, 0, 0, 0, 0.1, 0, 0, 0, 0.1, 0, 0, 0)
+mesh = SubResource("BoxMesh_77dpu")
+
+[node name="Area3D" type="Area3D" parent="."]
+collision_mask = 5
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.0001297, -0.000701904)
+shape = SubResource("BoxShape3D_vcxlv")
+
+[node name="AudioImpact" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("2_f3e0b")
+
+[connection signal="body_entered" from="Area3D" to="." method="_on_area_3d_body_entered"]

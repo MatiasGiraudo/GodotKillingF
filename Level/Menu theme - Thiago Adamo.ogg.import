@@ -1,0 +1,19 @@
+[remap]
+
+importer="oggvorbisstr"
+type="AudioStreamOggVorbis"
+uid="uid://dpul7y04pnhhv"
+path="res://.godot/imported/Menu theme - Thiago Adamo.ogg-6f6aa1ae4c2dffb63777fbde478b4e66.oggvorbisstr"
+
+[deps]
+
+source_file="res://Level/Menu theme - Thiago Adamo.ogg"
+dest_files=["res://.godot/imported/Menu theme - Thiago Adamo.ogg-6f6aa1ae4c2dffb63777fbde478b4e66.oggvorbisstr"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

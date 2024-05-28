@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://cf14rekse1lg4"
+path="res://.godot/imported/Gun 05_reload.wav-6b1f4b1e8349ad309fd2066e55bf6e6a.sample"
+
+[deps]
+
+source_file="res://Weapons/Audio/Gun 05_reload.wav"
+dest_files=["res://.godot/imported/Gun 05_reload.wav-6b1f4b1e8349ad309fd2066e55bf6e6a.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=0

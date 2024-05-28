@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://bimhbt3gye2xo"]
+
+[ext_resource type="PackedScene" uid="uid://dksmiv5b6b6sy" path="res://Weapons/bullet.tscn" id="1_45r4v"]
+
+[node name="Bullet" instance=ExtResource("1_45r4v")]
+damage = 4
