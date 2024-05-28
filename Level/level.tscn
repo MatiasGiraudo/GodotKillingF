@@ -68,6 +68,37 @@ transform = Transform3D(1, 0, 0, 0, 0.707107, 0.707107, 0, -0.707107, 0.707107, 
 [node name="Player1" parent="." instance=ExtResource("4_bvviw")]
 transform = Transform3D(0.999587, 0, 0.0287415, 0, 1, 0, -0.0287415, 0, 0.999587, -4.84282, 0, 6.90738)
 
+[node name="Skeleton3D" parent="Player1/Rig" index="0"]
+bones/1/position = Vector3(-0.0135183, 0.395482, 0.0504511)
+bones/4/rotation = Quaternion(-0.575841, -0.152142, -0.642432, 0.482225)
+bones/5/rotation = Quaternion(4.65292e-08, -5.62875e-08, -0.40997, 0.912099)
+bones/7/rotation = Quaternion(-0.161844, -0.288971, -0.0645798, 0.941346)
+bones/8/rotation = Quaternion(4.03374e-05, 4.03342e-05, -0.706959, 0.707255)
+bones/21/rotation = Quaternion(0.982674, 0.106867, 0.146792, -0.0372005)
+bones/22/rotation = Quaternion(0.311053, 7.65184e-08, -1.99855e-07, 0.950393)
+bones/23/rotation = Quaternion(-0.665782, -0.117013, 0.102738, 0.729717)
+bones/25/rotation = Quaternion(0.963355, -0.0781332, 0.253616, -0.0390033)
+bones/26/rotation = Quaternion(0.064614, -7.18697e-08, 3.98546e-08, 0.99791)
+bones/27/rotation = Quaternion(-0.435818, 0.105576, -0.0557909, 0.892078)
+
+[node name="Knife_Offhand" parent="Player1/Rig/Skeleton3D" index="0"]
+transform = Transform3D(-0.554702, 0.354626, 0.752692, 0.829775, 0.302592, 0.468946, -0.061458, 0.884691, -0.462108, 0.572616, 0.724981, -0.206881)
+
+[node name="1H_Crossbow" parent="Player1/Rig/Skeleton3D" index="1"]
+transform = Transform3D(0.997043, 0.00306493, -0.0767723, 0.00173247, 0.998053, 0.062348, 0.0768139, -0.0622964, 0.995096, -0.322884, 1.0084, 0.544679)
+
+[node name="2H_Crossbow" parent="Player1/Rig/Skeleton3D" index="2"]
+transform = Transform3D(0.997043, 0.00306493, -0.0767723, 0.00173247, 0.998053, 0.062348, 0.0768139, -0.0622964, 0.995096, -0.322884, 1.0084, 0.544679)
+
+[node name="Knife" parent="Player1/Rig/Skeleton3D" index="3"]
+transform = Transform3D(0.0767723, 0.00306524, 0.997043, -0.0623482, 0.998053, 0.00173217, -0.995096, -0.0622965, 0.0768139, -0.330884, 1.02527, 0.648148)
+
+[node name="Throwable" parent="Player1/Rig/Skeleton3D" index="4"]
+transform = Transform3D(0.0767723, 0.00306512, 0.997043, -0.0623482, 0.998053, 0.00173229, -0.995096, -0.0622965, 0.0768139, -0.330332, 1.20516, 0.63692)
+
+[node name="Rogue_Cape" parent="Player1/Rig/Skeleton3D" index="5"]
+transform = Transform3D(0.870297, -0.0261241, 0.491834, 0.125128, 0.977556, -0.169491, -0.476367, 0.20905, 0.854033, -0.00895158, 1.20023, 0.103016)
+
 [node name="NavigationRegion3D" type="NavigationRegion3D" parent="."]
 navigation_mesh = SubResource("NavigationMesh_lvviw")
 
@@ -354,9 +385,16 @@ stream = ExtResource("15_ou365")
 volume_db = -12.364
 autoplay = true
 
+[connection signal="update_health" from="Player1/Stats" to="HUD" method="_on_stats_update_health"]
+[connection signal="ammo_update" from="Player1/GunController" to="HUD" method="_on_gun_controller_ammo_update"]
+[connection signal="item_picked_up" from="Dropper" to="Player1" method="_on_dropper_item_picked_up"]
 [connection signal="item_picked_up" from="Dropper" to="HUD/VBoxContainer/SelectedWeapons" method="_on_dropper_item_picked_up"]
 [connection signal="body_entered" from="Dropper/PickupArea" to="Dropper" method="_on_pickup_area_body_entered"]
 [connection signal="drop_item" from="Spawner" to="Dropper" method="_on_spawner_drop_item"]
 [connection signal="wave_update" from="Spawner" to="HUD" method="_on_spawner_wave_update"]
 [connection signal="timeout" from="Spawner/Timer" to="Spawner" method="_on_timer_timeout"]
 [connection signal="item_selected" from="HUD/VBoxContainer/SelectedWeapons" to="HUD/VBoxContainer/SelectedWeapons" method="_on_item_selected"]
+[connection signal="weapon_selected" from="HUD/VBoxContainer/SelectedWeapons" to="Player1" method="_on_selected_weapons_weapon_selected"]
+
+[editable path="Player1"]
+[editable path="Player1/Rig/Skeleton3D/1H_Crossbow/Gun"]

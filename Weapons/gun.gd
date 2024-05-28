@@ -87,7 +87,7 @@ func shoot():
 		rof_timer.start()
 		bullets_in_mag -= 1
 		emit_signal("update_ammo", bullets_in_mag, mag_capacity)
-		$AnimationPlayer.play("Recoil")
+		#$AnimationPlayer.play("Recoil")
 		shoot_audio.play()
 		return true
 	elif not bullets_in_mag:
