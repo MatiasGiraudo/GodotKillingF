@@ -1,0 +1,26 @@
+[gd_scene load_steps=6 format=3 uid="uid://bw7ejrrld0u2y"]
+
+[ext_resource type="PackedScene" uid="uid://dyc4jly4545lv" path="res://Weapons/gun.tscn" id="1_bo48k"]
+[ext_resource type="PackedScene" uid="uid://o2phy7btcio1" path="res://Weapons/Guns/Gun-Assets/ak_74.tscn" id="2_4u1ry"]
+[ext_resource type="Texture2D" uid="uid://djdknv3ms1kfe" path="res://Weapons/Guns/WeaponIcons/Icon-Rifle.png" id="2_gnfwr"]
+[ext_resource type="AudioStream" uid="uid://bf2bx6k2w8h3d" path="res://Weapons/Audio/Gun 03_shoot.wav" id="4_meffq"]
+[ext_resource type="AudioStream" uid="uid://lrdma4rv2lgj" path="res://Weapons/Audio/Gun 03_reload.wav" id="5_mix3d"]
+
+[node name="Gun" instance=ExtResource("1_bo48k")]
+gun_name = "Ak-74"
+icon = ExtResource("2_gnfwr")
+fire_mode = 2
+
+[node name="MeshGun" parent="." index="2"]
+transform = Transform3D(10, 0, 0, 0, 10, 0, 0, 0, 10, 0, 0, 0)
+
+[node name="Sketchfab_Scene" parent="MeshGun" index="0" instance=ExtResource("2_4u1ry")]
+
+[node name="Muzzle" parent="." index="3"]
+transform = Transform3D(-2.98022e-08, 6.5772e-23, -0.999998, -3.5527e-15, 0.999999, -3.5527e-15, 0.999998, -7.60722e-23, -2.98022e-08, 61.2738, 2.34749, 0.0113649)
+
+[node name="AudioShoot" parent="." index="4"]
+stream = ExtResource("4_meffq")
+
+[node name="AudioReload" parent="." index="5"]
+stream = ExtResource("5_mix3d")

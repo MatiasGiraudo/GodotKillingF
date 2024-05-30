@@ -1,0 +1,26 @@
+[gd_scene load_steps=6 format=3 uid="uid://bikbuwpmu5o6m"]
+
+[ext_resource type="PackedScene" uid="uid://dyc4jly4545lv" path="res://Weapons/gun.tscn" id="1_rbtbr"]
+[ext_resource type="Texture2D" uid="uid://djdknv3ms1kfe" path="res://Weapons/Guns/WeaponIcons/Icon-Rifle.png" id="2_7ycq4"]
+[ext_resource type="PackedScene" uid="uid://c77hgcc6amieh" path="res://Weapons/Guns/Gun-Assets/mcx.tscn" id="2_e71f2"]
+[ext_resource type="AudioStream" uid="uid://dcq5de6gja8tx" path="res://Weapons/Audio/Gun 02_shoot.wav" id="4_6bbsv"]
+[ext_resource type="AudioStream" uid="uid://dp3mcgsnjg2yc" path="res://Weapons/Audio/Gun 02_reload.wav" id="5_ldmlp"]
+
+[node name="Gun" instance=ExtResource("1_rbtbr")]
+gun_name = "MCX"
+icon = ExtResource("2_7ycq4")
+fire_mode = 1
+
+[node name="MeshGun" parent="." index="2"]
+transform = Transform3D(10, 0, 0, 0, 10, 0, 0, 0, 10, 0, 2, 0)
+
+[node name="Sketchfab_Scene" parent="MeshGun" index="0" instance=ExtResource("2_e71f2")]
+
+[node name="Muzzle" parent="." index="3"]
+transform = Transform3D(-2.98022e-08, 6.5772e-23, -0.999998, -3.5527e-15, 0.999999, -3.5527e-15, 0.999998, -7.60722e-23, -2.98022e-08, 69.4233, 3.69287, 0.285698)
+
+[node name="AudioShoot" parent="." index="4"]
+stream = ExtResource("4_6bbsv")
+
+[node name="AudioReload" parent="." index="5"]
+stream = ExtResource("5_ldmlp")

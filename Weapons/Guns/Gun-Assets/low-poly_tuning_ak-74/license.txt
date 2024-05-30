@@ -1,0 +1,11 @@
+Model Information:
+* title:	low-poly Tuning AK-74
+* source:	https://sketchfab.com/3d-models/low-poly-tuning-ak-74-f7a4cc0c858142d2becc213e6151ffdd
+* author:	D.U. (https://sketchfab.com/D.U.)
+
+Model License:
+* license type:	CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)
+* requirements:	Author must be credited. Commercial use is allowed.
+
+If you use this 3D model in your project be sure to copy paste this credit wherever you share it:
+This work is based on "low-poly Tuning AK-74" (https://sketchfab.com/3d-models/low-poly-tuning-ak-74-f7a4cc0c858142d2becc213e6151ffdd) by D.U. (https://sketchfab.com/D.U.) licensed under CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)

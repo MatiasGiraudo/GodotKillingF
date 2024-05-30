@@ -6,19 +6,21 @@ extends CharacterBody3D
 var target_velocity = Vector3.ZERO
 var raycast_length = 1000 
 
-var walking = false
-var acceleration = 5
+var acceleration = 5.0
 
 var strafe_dir = Vector3.ZERO
 var strafe = Vector3.ZERO
+var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
 
 @onready var gun_controller = $GunController
-@onready var player_hand = $"Rig/Skeleton3D/1H_Crossbow"
-@onready var animation_player = $AnimationPlayer
-@onready var visual_rig = $Rig
-
+@onready var player_hand = $soldier/Armature/Skeleton3D/RightHand
+@onready var visual_rig = $soldier
 
 func _physics_process(delta):
+	
+	if not is_on_floor():
+		velocity.y -= gravity * delta
+	
 	#Forma 1 movimiento
 	var input_dir = Input.get_vector("move_left", "move_right", "move_forward","move_back")
 	var direction = (transform.basis * Vector3(input_dir.x, 0, input_dir.y)).normalized()
@@ -26,7 +28,6 @@ func _physics_process(delta):
 	if direction:
 		velocity.x = direction.x * speed
 		velocity.z = direction.z * speed
-		#look_at(direction * position)
 		visual_rig.look_at(position + 10 * velocity, Vector3.UP, true)
 		$AnimationTree.set("parameters/iwr_blend/blend_amount", lerp($AnimationTree.get("parameters/iwr_blend/blend_amount"), 1.0, delta * acceleration))
 	else:
@@ -34,26 +35,29 @@ func _physics_process(delta):
 		velocity.z = move_toward(velocity.z, 0 , speed)
 		$AnimationTree.set("parameters/iwr_blend/blend_amount", lerp($AnimationTree.get("parameters/iwr_blend/blend_amount"), 0.0, delta * acceleration))
 	
+	
 	# Seteamos look_at que afectara a la rotacion del arma segun donde esta el mouse
 	var mouse_position_result = ScreenpointToRay()
 	var look_at_me = Vector3(mouse_position_result.x, 0, mouse_position_result.z)
 	player_hand.look_at(look_at_me, Vector3.UP)
 	move_and_slide()
 	
+	#Hago que la camara obtenga la posicion del Player
+	$Camera_Controller.position = lerp($Camera_Controller.position, position, 0.1) 
+	
 	#Shoot Actions
 	if Input.is_action_pressed("primary_action"):
 		gun_controller.hold_trigger()
-		$AnimationTree.set("parameters/transition_shoot_reload/transition_request", "shoot")
-		$AnimationTree.set("parameters/anim_shoot_shot/request",AnimationNodeOneShot.ONE_SHOT_REQUEST_FIRE )
-		#animation_state.travel("1H_Ranged_Shoot")
+		#$AnimationTree.set("parameters/transition_shoot_reload/transition_request", "shoot")
+		#$AnimationTree.set("parameters/anim_shoot_shot/request",AnimationNodeOneShot.ONE_SHOT_REQUEST_FIRE )
 	else:
 		gun_controller.release_trigger()
 		
 	#Reload
 	if Input.is_action_just_pressed("reload"):
 		gun_controller.reload()
-		$AnimationTree.set("parameters/transition_shoot_reload/transition_request", "reload")
-		$AnimationTree.set("parameters/anim_shoot_shot/request",AnimationNodeOneShot.ONE_SHOT_REQUEST_FIRE )
+		#$AnimationTree.set("parameters/transition_shoot_reload/transition_request", "reload")
+		#$AnimationTree.set("parameters/anim_shoot_shot/request",AnimationNodeOneShot.ONE_SHOT_REQUEST_FIRE )
 
 	
 func ScreenpointToRay():

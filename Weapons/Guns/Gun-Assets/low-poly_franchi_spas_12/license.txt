@@ -1,0 +1,11 @@
+Model Information:
+* title:	low-poly Franchi SPAS 12
+* source:	https://sketchfab.com/3d-models/low-poly-franchi-spas-12-1c413824c59943aa830bc4f1a61e6db0
+* author:	D.U. (https://sketchfab.com/D.U.)
+
+Model License:
+* license type:	CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)
+* requirements:	Author must be credited. Commercial use is allowed.
+
+If you use this 3D model in your project be sure to copy paste this credit wherever you share it:
+This work is based on "low-poly Franchi SPAS 12" (https://sketchfab.com/3d-models/low-poly-franchi-spas-12-1c413824c59943aa830bc4f1a61e6db0) by D.U. (https://sketchfab.com/D.U.) licensed under CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)

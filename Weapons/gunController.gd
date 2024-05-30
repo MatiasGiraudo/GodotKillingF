@@ -1,13 +1,14 @@
 extends Node
 
 @export var starting_weapon: PackedScene
-var hand: BoneAttachment3D
+var hand: Node3D
 var equipped_weapon: Gun
 
 signal ammo_update
 
 func _ready():
-	hand = get_parent().find_child("1H_Crossbow")
+	hand = get_parent().find_child("gun_side")
+	#hand = $Player1/soldier/Armature/Skeleton3D/RightHand
 	
 	# Si hay un arma colocada como arma inicial, la equipamos
 	if starting_weapon:

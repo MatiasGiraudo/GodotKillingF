@@ -1,0 +1,11 @@
+Model Information:
+* title:	low-poly SIG SG-552
+* source:	https://sketchfab.com/3d-models/low-poly-sig-sg-552-2cfb1d27225c47d093c34763bf5b0f9b
+* author:	D.U. (https://sketchfab.com/D.U.)
+
+Model License:
+* license type:	CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)
+* requirements:	Author must be credited. Commercial use is allowed.
+
+If you use this 3D model in your project be sure to copy paste this credit wherever you share it:
+This work is based on "low-poly SIG SG-552" (https://sketchfab.com/3d-models/low-poly-sig-sg-552-2cfb1d27225c47d093c34763bf5b0f9b) by D.U. (https://sketchfab.com/D.U.) licensed under CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)

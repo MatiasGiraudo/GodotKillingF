@@ -40,9 +40,9 @@ func _ready():
 func init_bullet_spawn():
 	for spawn in BulletSpawns:
 		var spawn_bullet = spawn.instantiate()
-		$Malla/Muzzle.add_child(spawn_bullet)
+		$Muzzle.add_child(spawn_bullet)
 		
-	bullet_spawns = $Malla/Muzzle.get_children()
+	bullet_spawns = $Muzzle.get_children()
 	
 func reset_bursts():
 	burst_shots_remaining = burst_shots	
@@ -58,6 +58,7 @@ func refill_mag():
 	
 	
 func hold_trigger(): # Cuando esta presionando el gatillo
+	
 	match fire_mode:
 		FireMode.SINGLE:
 			if trigger_released:
@@ -87,7 +88,6 @@ func shoot():
 		rof_timer.start()
 		bullets_in_mag -= 1
 		emit_signal("update_ammo", bullets_in_mag, mag_capacity)
-		#$AnimationPlayer.play("Recoil")
 		shoot_audio.play()
 		return true
 	elif not bullets_in_mag:
