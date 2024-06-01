@@ -13,8 +13,8 @@ func drop():
 		drop_item = DropItem.instantiate()
 		
 		if drop_item.has_method("drop"):
-			#var location = Vector3.ZERO
-			#self.global_transform.origin = Vector3(location.x, self.global_transform.origin.y, location.z)
+			var location = Vector3.ZERO
+			self.global_transform.origin = Vector3(location.x, self.global_transform.origin.y, location.z)
 			$PickupArea/CollisionShape3D.set_deferred("disabled", false)
 			
 			drop_item.drop()

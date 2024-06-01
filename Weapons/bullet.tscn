@@ -3,7 +3,7 @@
 [ext_resource type="Script" path="res://Weapons/bullet.gd" id="1_w1wh1"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_7de5n"]
-albedo_color = Color(0, 0, 0, 1)
+albedo_color = Color(0.642515, 0.258036, 0, 1)
 
 [sub_resource type="BoxMesh" id="BoxMesh_77dpu"]
 material = SubResource("StandardMaterial3D_7de5n")
@@ -12,11 +12,11 @@ material = SubResource("StandardMaterial3D_7de5n")
 size = Vector3(0.101563, 0.100784, 0.100769)
 
 [node name="Bullet" type="Node3D"]
-transform = Transform3D(0.12941, 0.991025, 0.0334937, 0.482963, -0.0334936, -0.875, -0.866025, 0.12941, -0.482963, 0, 0, 0)
 script = ExtResource("1_w1wh1")
+speed = 100
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
-transform = Transform3D(5, 0, 0, 0, 5, 0, 0, 0, 5, 0, 0, 0)
+transform = Transform3D(1.17643, 0, 0, 0, 1.24424, 0, 0, 0, 3.79414, 0, 0, 0)
 mesh = SubResource("BoxMesh_77dpu")
 
 [node name="Area3D" type="Area3D" parent="."]

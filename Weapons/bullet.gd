@@ -2,7 +2,7 @@ extends Node3D
 @export var speed = 70
 @export var damage = 1
 
-const Kill_Time = 10
+const Kill_Time = 3
 var timer = 0
 
 

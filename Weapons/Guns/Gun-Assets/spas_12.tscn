@@ -614,6 +614,7 @@ transform = Transform3D(1, 0, 0, 0, 2.22045e-16, -1, 0, 1, 2.22045e-16, 0, 0, 0)
 
 [node name="12_70_0" type="Node3D" parent="Sketchfab_model/root/GLTF_SceneRootNode"]
 transform = Transform3D(1.68587e-07, 1, 0, -1, 1.68587e-07, 0, 0, 0, 1, -0.134612, -0.0567628, 0)
+visible = false
 
 [node name="Object_4" type="MeshInstance3D" parent="Sketchfab_model/root/GLTF_SceneRootNode/12_70_0"]
 mesh = SubResource("ArrayMesh_lasnw")
@@ -625,6 +626,7 @@ skeleton = NodePath("")
 
 [node name="case_1" type="Node3D" parent="Sketchfab_model/root/GLTF_SceneRootNode"]
 transform = Transform3D(1.68587e-07, 1, 0, -1, 1.68587e-07, 0, 0, 0, 1, -0.134612, -0.0967628, 0)
+visible = false
 
 [node name="Object_7" type="MeshInstance3D" parent="Sketchfab_model/root/GLTF_SceneRootNode/case_1"]
 mesh = SubResource("ArrayMesh_hanl2")

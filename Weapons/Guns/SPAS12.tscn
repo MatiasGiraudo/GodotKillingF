@@ -1,14 +1,19 @@
-[gd_scene load_steps=6 format=3 uid="uid://svaf3n8xchm0"]
+[gd_scene load_steps=9 format=3 uid="uid://svaf3n8xchm0"]
 
 [ext_resource type="PackedScene" uid="uid://dyc4jly4545lv" path="res://Weapons/gun.tscn" id="1_br8ab"]
 [ext_resource type="PackedScene" uid="uid://cvfjmupdexvgp" path="res://Weapons/Guns/Gun-Assets/spas_12.tscn" id="2_b6f1f"]
 [ext_resource type="Texture2D" uid="uid://bbmgb2jutlgjj" path="res://Weapons/Guns/WeaponIcons/Icon-Shotgun.png" id="2_jpc18"]
+[ext_resource type="PackedScene" uid="uid://bbittxxf4lj7u" path="res://Weapons/BulletSpawns/bullet_spawn_center.tscn" id="3_fm0x7"]
 [ext_resource type="AudioStream" uid="uid://bkf11ndxh8m7j" path="res://Weapons/Audio/Gun 05_shoot.wav" id="4_f2xbo"]
+[ext_resource type="PackedScene" uid="uid://c7jumqyh5sbjy" path="res://Weapons/BulletSpawns/bullet_spawn_left.tscn" id="4_wvw1r"]
 [ext_resource type="AudioStream" uid="uid://cf14rekse1lg4" path="res://Weapons/Audio/Gun 05_reload.wav" id="5_b1rsu"]
+[ext_resource type="PackedScene" uid="uid://qn5at7kc71sm" path="res://Weapons/BulletSpawns/bullet_spawn_right.tscn" id="5_sy7lo"]
 
 [node name="Gun" instance=ExtResource("1_br8ab")]
 gun_name = "SPAS-12"
 icon = ExtResource("2_jpc18")
+BulletSpawns = Array[PackedScene]([ExtResource("3_fm0x7"), ExtResource("4_wvw1r"), ExtResource("5_sy7lo")])
+mag_capacity = 1
 
 [node name="MeshGun" parent="." index="2"]
 transform = Transform3D(80, 0, 0, 0, 80, 0, 0, 0, 80, 17.8652, 2.2338, 0)
@@ -16,10 +21,10 @@ transform = Transform3D(80, 0, 0, 0, 80, 0, 0, 0, 80, 17.8652, 2.2338, 0)
 [node name="Sketchfab_Scene" parent="MeshGun" index="0" instance=ExtResource("2_b6f1f")]
 
 [node name="Muzzle" parent="." index="3"]
-transform = Transform3D(-2.98022e-08, 6.5772e-23, -0.999998, -3.5527e-15, 0.999999, -3.5527e-15, 0.999998, -7.60722e-23, -2.98022e-08, 62.2884, 5.94309, 0.0408551)
+transform = Transform3D(-5.76204e-08, -4.89288e-22, 0.999998, -3.5527e-15, 0.999999, -3.5527e-15, -0.999998, 7.11345e-22, -5.76204e-08, 62.2884, 5.94309, 0.0408551)
 
-[node name="AudioShoot" parent="." index="4"]
+[node name="AudioShoot" parent="." index="5"]
 stream = ExtResource("4_f2xbo")
 
-[node name="AudioReload" parent="." index="5"]
+[node name="AudioReload" parent="." index="6"]
 stream = ExtResource("5_b1rsu")

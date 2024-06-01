@@ -21,6 +21,8 @@ var default_material = load("res://Enemy/enemyDefaultColor.tres")
 var attack_material = load("res://Enemy/enemyAttackMaterial.tres")
 var resting_material = load("res://Enemy/enemyRestingMaterial.tres")
 
+var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
+
 enum state {
 	SEEKING,
 	ATTACKING,
@@ -33,6 +35,9 @@ func _ready():
 
 func _physics_process(delta):
 	var direction = Vector3()
+	
+	if not is_on_floor():
+		velocity.y -= gravity * delta
 	
 	if is_instance_valid(player):
 		match current_state:

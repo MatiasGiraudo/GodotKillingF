@@ -1,7 +1,7 @@
 extends CharacterBody3D
 
 #Velocidad en metros por segundo
-@export var speed = 5
+@export var speed = 7
 
 var target_velocity = Vector3.ZERO
 var raycast_length = 1000 
@@ -28,7 +28,7 @@ func _physics_process(delta):
 	if direction:
 		velocity.x = direction.x * speed
 		velocity.z = direction.z * speed
-		visual_rig.look_at(position + 10 * velocity, Vector3.UP, true)
+		#visual_rig.look_at(position + 10 * velocity, Vector3.UP, true)
 		$AnimationTree.set("parameters/iwr_blend/blend_amount", lerp($AnimationTree.get("parameters/iwr_blend/blend_amount"), 1.0, delta * acceleration))
 	else:
 		velocity.x = move_toward(velocity.x, 0 , speed)
@@ -39,7 +39,8 @@ func _physics_process(delta):
 	# Seteamos look_at que afectara a la rotacion del arma segun donde esta el mouse
 	var mouse_position_result = ScreenpointToRay()
 	var look_at_me = Vector3(mouse_position_result.x, 0, mouse_position_result.z)
-	player_hand.look_at(look_at_me, Vector3.UP)
+	#player_hand.look_at(look_at_me, Vector3.UP)
+	look_at(look_at_me, Vector3.UP)
 	move_and_slide()
 	
 	#Hago que la camara obtenga la posicion del Player
@@ -48,6 +49,7 @@ func _physics_process(delta):
 	#Shoot Actions
 	if Input.is_action_pressed("primary_action"):
 		gun_controller.hold_trigger()
+		$Camera_Controller/Camera_target/Camera3D.shake_camera()
 		#$AnimationTree.set("parameters/transition_shoot_reload/transition_request", "shoot")
 		#$AnimationTree.set("parameters/anim_shoot_shot/request",AnimationNodeOneShot.ONE_SHOT_REQUEST_FIRE )
 	else:
@@ -56,8 +58,8 @@ func _physics_process(delta):
 	#Reload
 	if Input.is_action_just_pressed("reload"):
 		gun_controller.reload()
-		#$AnimationTree.set("parameters/transition_shoot_reload/transition_request", "reload")
-		#$AnimationTree.set("parameters/anim_shoot_shot/request",AnimationNodeOneShot.ONE_SHOT_REQUEST_FIRE )
+		$AnimationTree.set("parameters/transition_shoot_reload/transition_request", "reload")
+		$AnimationTree.set("parameters/anim_shoot_shot/request",AnimationNodeOneShot.ONE_SHOT_REQUEST_FIRE )
 
 	
 func ScreenpointToRay():

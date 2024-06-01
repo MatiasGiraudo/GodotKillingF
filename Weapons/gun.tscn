@@ -1,8 +1,9 @@
-[gd_scene load_steps=9 format=3 uid="uid://dyc4jly4545lv"]
+[gd_scene load_steps=12 format=3 uid="uid://dyc4jly4545lv"]
 
 [ext_resource type="Script" path="res://Weapons/gun.gd" id="1_7pc77"]
 [ext_resource type="PackedScene" uid="uid://dksmiv5b6b6sy" path="res://Weapons/bullet.tscn" id="2_b56ix"]
 [ext_resource type="PackedScene" uid="uid://bbittxxf4lj7u" path="res://Weapons/BulletSpawns/bullet_spawn_center.tscn" id="3_3lobq"]
+[ext_resource type="Texture2D" uid="uid://clb1mvikw2hti" path="res://Weapons/Materials/muzzle_flash.png" id="4_xouu1"]
 
 [sub_resource type="Animation" id="Animation_ow048"]
 resource_name = "Drop"
@@ -115,6 +116,16 @@ _data = {
 "Reload": SubResource("Animation_o65jh")
 }
 
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_lvj1c"]
+transparency = 1
+cull_mode = 2
+albedo_texture = ExtResource("4_xouu1")
+emission_enabled = true
+emission = Color(0.670588, 0.568627, 0.286275, 1)
+
+[sub_resource type="QuadMesh" id="QuadMesh_02lwj"]
+material = SubResource("StandardMaterial3D_lvj1c")
+
 [node name="Gun" type="Node3D"]
 script = ExtResource("1_7pc77")
 bullet = ExtResource("2_b56ix")
@@ -132,7 +143,28 @@ libraries = {
 [node name="MeshGun" type="Node3D" parent="."]
 
 [node name="Muzzle" type="Node3D" parent="."]
-transform = Transform3D(-2.98022e-08, 6.5772e-23, -0.999998, -3.5527e-15, 0.999999, -3.5527e-15, 0.999998, -7.60722e-23, -2.98022e-08, -0.0217755, 0.162008, 0.595526)
+transform = Transform3D(-0.999998, 0, -8.74226e-08, 0, 0.999999, 0, 8.74226e-08, 0, -0.999998, 0, 0, 0)
+
+[node name="MuzzleFlash" type="Node3D" parent="."]
+visible = false
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="MuzzleFlash"]
+transform = Transform3D(3.64604e-06, 0, -12.3782, 0, 16.3181, 0, 27.8039, 0, 1.62321e-06, 0, 0, 0)
+mesh = SubResource("QuadMesh_02lwj")
+skeleton = NodePath("../../Muzzle")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="MuzzleFlash"]
+transform = Transform3D(-5.5449e-13, 14.5077, 4.66364e-07, -3.64604e-06, -6.34153e-07, 10.6692, 27.8039, 0, 1.39909e-06, 0, 0, 0)
+mesh = SubResource("QuadMesh_02lwj")
+skeleton = NodePath("../../Muzzle")
+
+[node name="OmniLight3D" type="OmniLight3D" parent="MuzzleFlash"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -5.27502)
+light_color = Color(1, 0.737255, 0.478431, 1)
+light_energy = 1.5
+omni_range = 76.7098
+
+[node name="Timer" type="Timer" parent="MuzzleFlash"]
 
 [node name="AudioShoot" type="AudioStreamPlayer2D" parent="."]
 

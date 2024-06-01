@@ -10,6 +10,7 @@
 gun_name = "Ak-74"
 icon = ExtResource("2_gnfwr")
 fire_mode = 2
+mag_capacity = 30
 
 [node name="MeshGun" parent="." index="2"]
 transform = Transform3D(10, 0, 0, 0, 10, 0, 0, 0, 10, 0, 0, 0)
@@ -17,10 +18,13 @@ transform = Transform3D(10, 0, 0, 0, 10, 0, 0, 0, 10, 0, 0, 0)
 [node name="Sketchfab_Scene" parent="MeshGun" index="0" instance=ExtResource("2_4u1ry")]
 
 [node name="Muzzle" parent="." index="3"]
-transform = Transform3D(-2.98022e-08, 6.5772e-23, -0.999998, -3.5527e-15, 0.999999, -3.5527e-15, 0.999998, -7.60722e-23, -2.98022e-08, 61.2738, 2.34749, 0.0113649)
+transform = Transform3D(-4.37113e-08, 0, 0.999998, 0, 0.999999, 0, -0.999998, 0, -4.37113e-08, 62.1259, 3.06957, 0)
 
-[node name="AudioShoot" parent="." index="4"]
+[node name="MuzzleFlash" parent="." index="4"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 74.1244, 2.81632, 0)
+
+[node name="AudioShoot" parent="." index="5"]
 stream = ExtResource("4_meffq")
 
-[node name="AudioReload" parent="." index="5"]
+[node name="AudioReload" parent="." index="6"]
 stream = ExtResource("5_mix3d")
