@@ -31,8 +31,8 @@ signal update_ammo
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	$MuzzleFlash/Timer.connect("timeout", func(): $MuzzleFlash.visible = false)
-	$MuzzleFlash/Timer.set_wait_time(0.03)
+	$Muzzle/MuzzleFlash/Timer.connect("timeout", func(): $Muzzle/MuzzleFlash.visible = false)
+	$Muzzle/MuzzleFlash/Timer.set_wait_time(0.03)
 	rof_timer.wait_time = millisec_between_shots / 1000.0
 	reset_bursts()
 	#reload()
@@ -84,15 +84,14 @@ func shoot():
 			var new_bullet = bullet.instantiate()
 			new_bullet.global_transform = spawn.global_transform
 			new_bullet.speed = muzzle_speed 
-			print(spawn.global_transform)
 			var root_scene = get_tree().root.get_children()[0]
 			root_scene.add_child(new_bullet)
 		can_shoot = false
 		rof_timer.start()
 		bullets_in_mag -= 1
 		emit_signal("update_ammo", bullets_in_mag, mag_capacity)
-		$MuzzleFlash.visible = true
-		$MuzzleFlash/Timer.start()
+		$Muzzle/MuzzleFlash.visible = true
+		$Muzzle/MuzzleFlash/Timer.start()
 		shoot_audio.play()
 		return true
 	elif not bullets_in_mag:

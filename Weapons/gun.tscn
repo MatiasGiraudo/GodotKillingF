@@ -145,26 +145,27 @@ libraries = {
 [node name="Muzzle" type="Node3D" parent="."]
 transform = Transform3D(-0.999998, 0, -8.74226e-08, 0, 0.999999, 0, 8.74226e-08, 0, -0.999998, 0, 0, 0)
 
-[node name="MuzzleFlash" type="Node3D" parent="."]
+[node name="MuzzleFlash" type="Node3D" parent="Muzzle"]
+transform = Transform3D(-1, 7.64275e-15, -8.7423e-08, -1.69407e-21, -1, -8.7423e-08, -8.7423e-08, -8.74229e-08, 1, 0, 0, 0)
 visible = false
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="MuzzleFlash"]
-transform = Transform3D(3.64604e-06, 0, -12.3782, 0, 16.3181, 0, 27.8039, 0, 1.62321e-06, 0, 0, 0)
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Muzzle/MuzzleFlash"]
+transform = Transform3D(4.17188e-08, 0, -0.219101, 0, 0.234797, 0, 0.552582, 0, 1.65416e-08, 0, 0, 0)
 mesh = SubResource("QuadMesh_02lwj")
-skeleton = NodePath("../../Muzzle")
+skeleton = NodePath("../..")
 
-[node name="MeshInstance3D2" type="MeshInstance3D" parent="MuzzleFlash"]
-transform = Transform3D(-5.5449e-13, 14.5077, 4.66364e-07, -3.64604e-06, -6.34153e-07, 10.6692, 27.8039, 0, 1.39909e-06, 0, 0, 0)
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="Muzzle/MuzzleFlash"]
+transform = Transform3D(-2.41541e-08, 0.219101, 1.02633e-08, 0, -9.57719e-09, 0.234797, 0.552582, 9.57719e-09, 4.48624e-16, 0, 0, 0)
 mesh = SubResource("QuadMesh_02lwj")
-skeleton = NodePath("../../Muzzle")
+skeleton = NodePath("../..")
 
-[node name="OmniLight3D" type="OmniLight3D" parent="MuzzleFlash"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -5.27502)
+[node name="OmniLight3D" type="OmniLight3D" parent="Muzzle/MuzzleFlash"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.6812e-14, 0, -0.0941915)
 light_color = Color(1, 0.737255, 0.478431, 1)
 light_energy = 1.5
-omni_range = 76.7098
+omni_range = 1.77209
 
-[node name="Timer" type="Timer" parent="MuzzleFlash"]
+[node name="Timer" type="Timer" parent="Muzzle/MuzzleFlash"]
 
 [node name="AudioShoot" type="AudioStreamPlayer2D" parent="."]
 
