@@ -38,7 +38,8 @@ func _ready():
 	#reload()
 	init_bullet_spawn()
 	
-	
+
+
 func init_bullet_spawn():
 	for spawn in BulletSpawns:
 		var spawn_bullet = spawn.instantiate()

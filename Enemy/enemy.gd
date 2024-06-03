@@ -2,13 +2,7 @@ extends CharacterBody3D
 
 class_name Enemy
 
-@onready var player = $"../Player1" as CharacterBody3D
-@onready var nav: NavigationAgent3D = $NavigationAgent3D
-@onready var attack_timer = $AttackTimer
-@onready var attack_audio = $AudioAttack
-@onready var death_audio = $AudioDeath
-
-var speed = 2
+var speed = 5
 var accel = 10
 var attack_speed_multiplier = 5
 var attacking = false
@@ -30,8 +24,16 @@ enum state {
 	RESTING
 }
 
-func _ready():
-	$MeshInstance3D.set_surface_override_material(0, default_material)
+@onready var player = $"../Player1" as CharacterBody3D
+@onready var nav: NavigationAgent3D = $NavigationAgent3D
+@onready var attack_timer = $AttackTimer
+@onready var attack_audio = $AudioAttack
+@onready var death_audio = $AudioDeath
+
+@onready var anim_tree = $AnimationTree
+#func _ready():
+	#$MeshInstance3D.set_surface_override_material(0, default_material)
+
 
 func _physics_process(delta):
 	var direction = Vector3()
@@ -48,10 +50,15 @@ func _physics_process(delta):
 				direction = direction.normalized()
 				
 				velocity = velocity.lerp(direction * speed, accel * delta)
+
+				var look_at_me = Vector3(player.global_position.x,global_position.y, player.global_position.z)
+				look_at(look_at_me)
+				
 				move_and_slide()
 				
+				
 				if $AttackRadio.overlaps_body(player):
-					init_attack()					
+					init_attack()
 				
 			state.ATTACKING:
 				move_and_attack()
@@ -75,12 +82,14 @@ func move_and_attack():
 	if distance <= 1.1:
 		match current_state:
 			state.ATTACKING:
+				anim_tree.set("parameters/conditions/attack", true)
 				var stats_player : Stats = player.get_node("Stats")
 				stats_player.take_hit(1)
 				
 				current_state = state.RETURNING
 				attack_target = return_target
 			state.RETURNING:
+				anim_tree.set("parameters/conditions/run", true)
 				current_state = state.RESTING
 				$MeshInstance3D.set_surface_override_material(0, resting_material)
 				collide_with_other_enemies(true)
@@ -93,17 +102,19 @@ func collide_with_other_enemies(should_be_collide):
 	set_collision_layer_value(3, should_be_collide)
 
 func _on_stats_dead_signal():
-	death_audio.play()
+	anim_tree.set("parameters/conditions/dead", true)
+	current_state = state.RESTING
+	await get_tree().create_timer(4).timeout 
 	queue_free()
 
 func init_attack():
 	return_target = global_transform.origin
 	attack_target = player.global_transform.origin
 	current_state = state.ATTACKING
-	$MeshInstance3D.set_surface_override_material(0, attack_material)
+	#$MeshInstance3D.set_surface_override_material(0, attack_material)
 	collide_with_other_enemies(false)
 
 
 func _on_attack_timer_timeout():
 	current_state = state.SEEKING
-	$MeshInstance3D.set_surface_override_material(0, default_material)
+	#$MeshInstance3D.set_surface_override_material(0, default_material)

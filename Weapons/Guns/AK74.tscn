@@ -9,20 +9,27 @@
 [node name="Gun" instance=ExtResource("1_bo48k")]
 gun_name = "Ak-74"
 icon = ExtResource("2_gnfwr")
+muzzle_speed = 60
 fire_mode = 2
 mag_capacity = 30
 
-[node name="Sketchfab_Scene" parent="MeshGun" index="0" instance=ExtResource("2_4u1ry")]
+[node name="Sketchfab_Scene2" parent="MeshGun" index="0" instance=ExtResource("2_4u1ry")]
 
 [node name="Muzzle" parent="." index="3"]
 transform = Transform3D(-4.37113e-08, 0, 0.999998, 0, 0.999999, 0, -0.999998, 0, -4.37113e-08, 1.19542, 0.0589337, -0.000158697)
 
 [node name="MuzzleFlash" parent="Muzzle" index="0"]
-transform = Transform3D(1, 0, -1.74846e-07, 0, 1, 0, 1.74846e-07, 0, 1, 0.00376764, 0.00860394, 0.248251)
+transform = Transform3D(1, 0, -1.74846e-07, 0, 1, 0, 1.74846e-07, 0, 1, 0.00376762, 0.00860394, 0.662857)
+
+[node name="Light" parent="." index="4"]
+transform = Transform3D(-0.999998, 0, -8.74226e-08, 0, 0.999999, 0, 8.74226e-08, 0, -0.999998, 0.652069, 0.0395487, -0.0827494)
 visible = false
 
-[node name="AudioShoot" parent="." index="4"]
+[node name="SpotLight3D" parent="Light" index="0"]
+transform = Transform3D(-2.18558e-07, -8.7423e-08, 1, 7.64276e-15, -1, -8.74229e-08, 1, -1.14641e-14, 2.18558e-07, 0.0693399, 0, -0.0900012)
+
+[node name="AudioShoot" parent="." index="5"]
 stream = ExtResource("4_meffq")
 
-[node name="AudioReload" parent="." index="5"]
+[node name="AudioReload" parent="." index="6"]
 stream = ExtResource("5_mix3d")

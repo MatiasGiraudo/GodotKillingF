@@ -37,9 +37,9 @@ func _physics_process(delta):
 	
 	# Seteamos look_at que afectara a la rotacion del arma segun donde esta el mouse
 	var mouse_position_result = ScreenpointToRay()
-	#var look_at_me = Vector3(mouse_position_result.x, 0, mouse_position_result.z)
-	##player_hand.look_at(look_at_me, Vector3.UP)
-	look_at(mouse_position_result, Vector3.UP)
+	var look_at_me = Vector3(mouse_position_result.x, 0, mouse_position_result.z)
+	#player_hand.look_at(look_at_me, Vector3.UP)
+	look_at(look_at_me, Vector3.UP)
 	
 	#Hago que la camara obtenga la posicion del Player
 	$Camera_Controller.position = lerp($Camera_Controller.position, position, 0.1) 
